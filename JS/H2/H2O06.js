@@ -25,6 +25,15 @@ function draw() {
   if (keyIsDown(RIGHT_ARROW)) {
     xJos += celGrootte;
   }
+  if (keyIsDown(LEFT_ARROW)) {
+    xJos -= celGrootte;
+  }
+  if (keyIsDown(UP_ARROW)) {
+    xJos -= celGrootte;
+  }
+  if (keyIsDown(DOWN_ARROW)) {
+    xJos += celGrootte;
+  }
   
   xJos = constrain(xJos,0,width - celGrootte);
   
