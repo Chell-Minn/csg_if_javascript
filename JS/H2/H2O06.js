@@ -22,11 +22,11 @@ function draw() {
   background(brug);
   tekenRaster();
 
-  if (keyIsDown(RIGHT_ARROW)) {
-    xJos += celGrootte;
-  }
   if (keyIsDown(LEFT_ARROW)) {
     xJos -= celGrootte;
+  }
+  if (keyIsDown(RIGHT_ARROW)) {
+    xJos += celGrootte;
   }
   if (keyIsDown(UP_ARROW)) {
     yJos -= celGrootte;
@@ -34,9 +34,15 @@ function draw() {
   if (keyIsDown(DOWN_ARROW)) {
     yJos += celGrootte;
   }
-  
+
   xJos = constrain(xJos,0,width - celGrootte);
-  
+  yJos = constrain(yJos,0,height - celGrootte);
+
+  if (xJos == 6*celGrootte && yJos == 4*celGrootte) {
+    spriteJos.resize(50,50);
+    spriteJos.filter(ERODE);
+  }
+
   image(spriteJos,xJos,yJos);
 }
 
