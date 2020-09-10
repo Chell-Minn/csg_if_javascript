@@ -10,11 +10,15 @@ function preload() {
 }
 
 
-var rood = {
-    x: 300,
-    y: 200,
-    dia: 10,
-
+class Rood {
+    constructor()
+    {
+        this.x = 300;
+        this.y = 200;
+        this.dia = 10;
+        this.size = 1.0;
+        this.rotation = 0.0;
+    }
 
     beweeg() {
         if (keyIsDown(DOWN_ARROW)) {
@@ -29,17 +33,37 @@ var rood = {
         if (keyIsDown(LEFT_ARROW)) {
             this.x -=5;
         }
-    },
+        this.size = sin(millis() * 0.01) + 1.0;
+        this.rotation =sin(millis() * 0.01 * PI) + 1.0;
+    }
+
     teken() {
         fill('red');
         noStroke();
-        background('purple')
-        image(ryan, this.x, this.y)
-        
+        rectMode(CENTER);
+        imageMode(CENTER);
+        rotate(this.rotation);
+        image(ryan, this.x, this.y, ryan.width * this.size, this.size * ryan.height)
     }
 }
 
-function draw() { 
-    rood.teken()
-    rood.beweeg()
+var roods = [new Rood()];
+var previousSecs = 0;
+
+function draw() {
+    
+        background('#ff3399')
+    var secs = parseInt(millis() / 1000);
+    console.log(secs);
+    if (secs > previousSecs)
+    {
+        roods.push(new Rood());
+    }
+    previousSecs = secs;
+    roods.forEach(rood => {
+        rood.beweeg()
+    });
+    roods.forEach(rood => {
+        rood.teken()
+    });
 }
