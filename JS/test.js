@@ -10,14 +10,11 @@ function preload() {
 }
 
 
-class Ryan {
-    constructor() {
-        this.x = 300;
-        this.y = 200;
-        this.dia = 10;
-        this.size = 1.0;
-    }
-
+var ryan = {
+    x: 300,
+    y: 200,
+    dia: 10,
+    size: 1.0,
     beweeg() {
         if (keyIsDown(DOWN_ARROW)) {
             this.y += 5;
@@ -32,10 +29,8 @@ class Ryan {
             this.x -= 5;
         }
         this.size = 1.5 + sin(millis() / 1000 * 10);
-    }
-
+    },
     teken() {
-        fill('red');
         noStroke();
         rectMode(CENTER);
         imageMode(CENTER);
@@ -43,9 +38,19 @@ class Ryan {
     }
 }
 
-var ryan = new Ryan();
+var eiland = {
+    x: 450,
+    y: 0,
+    dia: 250,
+    teken() {
+        fill('purple')
+        ellipse(this.x, this.y, this.dia)
+    }
+}
+
 function draw() {
     background('#ff3399')
     ryan.beweeg()
+    eiland.teken()
     ryan.teken()
 }
