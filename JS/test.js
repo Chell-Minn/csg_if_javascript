@@ -9,7 +9,6 @@ function preload() {
     ryanImg = loadImage("images/ryan.png");
 }
 
-
 var ryan = {
     x: 300,
     y: 200,
@@ -28,7 +27,7 @@ var ryan = {
         if (keyIsDown(LEFT_ARROW)) {
             this.x -= 5;
         }
-        this.size = 1.5 + sin(millis() / 1000 * 10);
+        this.size = 1.5 + 0.1 * sin(millis() / 1000 * 10);
     },
     teken() {
         noStroke();
@@ -42,15 +41,29 @@ var eiland = {
     x: 450,
     y: 0,
     dia: 250,
+    color: 'purple',
     teken() {
-        fill('purple')
+        fill(this.color)
         ellipse(this.x, this.y, this.dia)
+    },
+    wordtBereikt(ryan) {
+        var deltaX = abs(ryan.x - eiland.x);
+        var deltaY = abs(ryan.y - ryan.y);
+        var dist = sqrt(deltaX * deltaX, deltaY * deltaY);
+
+        if (dist <= eiland.dia + ryan.dia) {
+            this.color = "yellow";
+        }
+        else {
+            this.color = "purple";
+        }
     }
 }
 
 function draw() {
     background('#ff3399')
     ryan.beweeg()
+    eiland.wordtBereikt(ryan);
     eiland.teken()
     ryan.teken()
 }
