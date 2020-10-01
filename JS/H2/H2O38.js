@@ -32,11 +32,11 @@ var knikkerVerzameling = [];
 function setup() {
   canvas = createCanvas(1000,300);
   canvas.parent('processing');
-  frameRate(50);
+  frameRate(500);
   colorMode(RGB,255,255,255,1);
   background(0,0,75,1);
   noStroke();
-  for (var k = 0; k < 10; k++) {
+  for (var k = 0; k < 10000; k++) {
     knikkerVerzameling.push(new Knikker(random(20,980),random(20,280),'white'));
   }  
 }
@@ -48,8 +48,6 @@ function draw() {
     knikkerVerzameling[i].teken();
   } 
   if (mouseIsPressed) {
-    for (var i = 0; i < knikkerVerzameling.length; i++) {
-      knikkerVerzameling[i].beweeg();
-    }
+    knikkerVerzameling.push(new Knikker(mouseX,mouseY,'green'));
   }
 }
