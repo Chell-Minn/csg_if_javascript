@@ -26,7 +26,7 @@ class Speler {
       this.x += this.stap;
     }    
   
-    if (keyIsDown(32)) {
+    if (keyIsDown(UP_ARROW)) {
       this.spring();
     }
   }

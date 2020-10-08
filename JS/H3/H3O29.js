@@ -10,7 +10,7 @@
    var gameSettings = [5,10,15,50,75];   
 */
 
-var gameSettings = [5,10,15,50,75];
+var gameSettings = [2,2,2,50,150];
 
 /*  **********************************************************
     **                BEGIN klasse Speler                   **
